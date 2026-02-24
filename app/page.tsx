@@ -68,8 +68,8 @@ export default function HomePage() {
               <Link href="/contact" className="text-gray-700 hover:text-blue-600 transition">Contact</Link>
             </div>
             <div className="flex items-center gap-2">
-              <Link href="/contact" className="hidden md:block">
-                <Button className="bg-blue-600 hover:bg-blue-700">Contact Us</Button>
+              <Link href="/contact">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-sm sm:text-base">Contact Us</Button>
               </Link>
               <button
                 className="md:hidden p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100"
