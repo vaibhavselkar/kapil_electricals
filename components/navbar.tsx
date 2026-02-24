@@ -13,7 +13,7 @@ export default function Navbar({ currentPage = 'home' }: NavbarProps) {
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
     { href: '/projects', label: 'Projects' },
-    { href: '/solar', label: 'Solar' },
+    { href: '/solar', label: 'Solar Solutions' },
     { href: '/certifications', label: 'Certifications' },
     { href: '/contact', label: 'Contact' },
   ]
@@ -33,7 +33,7 @@ export default function Navbar({ currentPage = 'home' }: NavbarProps) {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm text-gray-700 hover:text-blue-600 transition ${
+                className={`text-gray-700 hover:text-blue-600 transition ${
                   currentPage === link.href.slice(1) || (currentPage === 'home' && link.href === '/')
                     ? 'text-blue-600 font-semibold'
                     : ''
@@ -43,7 +43,7 @@ export default function Navbar({ currentPage = 'home' }: NavbarProps) {
               </Link>
             ))}
             <Link href="/contact">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-sm">Contact Us</Button>
+              <Button className="bg-blue-600 hover:bg-blue-700">Contact Us</Button>
             </Link>
           </div>
         </div>
