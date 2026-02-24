@@ -47,7 +47,7 @@ export default function Solar() {
               </div>
               <span className="font-bold text-lg text-gray-900">Kapil Electricals</span>
             </Link>
-            <div className="hidden md:flex items-center gap-8">
+            <div className="flex flex-wrap items-center gap-4 justify-end">
               <Link href="/" className="text-gray-700 hover:text-blue-600 transition">Home</Link>
               <Link href="/about" className="text-gray-700 hover:text-blue-600 transition">About</Link>
               <Link href="/projects" className="text-gray-700 hover:text-blue-600 transition">Projects</Link>

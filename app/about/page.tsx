@@ -27,17 +27,17 @@ export default function About() {
               </div>
               <span className="font-bold text-lg text-gray-900">Kapil Electricals</span>
             </Link>
-            <div className="hidden md:flex items-center gap-8">
-              <Link href="/" className="text-gray-700 hover:text-blue-600 transition">Home</Link>
-              <Link href="/about" className="text-blue-600 font-semibold">About</Link>
-              <Link href="/projects" className="text-gray-700 hover:text-blue-600 transition">Projects</Link>
-              <Link href="/solar" className="text-gray-700 hover:text-blue-600 transition">Solar Solutions</Link>
-              <Link href="/certifications" className="text-gray-700 hover:text-blue-600 transition">Certifications</Link>
-              <Link href="/contact" className="text-gray-700 hover:text-blue-600 transition">Contact</Link>
+            <div className="flex flex-wrap items-center gap-4 justify-end">
+              <Link href="/" className="text-sm text-gray-700 hover:text-blue-600 transition">Home</Link>
+              <Link href="/about" className="text-sm text-blue-600 font-semibold">About</Link>
+              <Link href="/projects" className="text-sm text-gray-700 hover:text-blue-600 transition">Projects</Link>
+              <Link href="/solar" className="text-sm text-gray-700 hover:text-blue-600 transition">Solar</Link>
+              <Link href="/certifications" className="text-sm text-gray-700 hover:text-blue-600 transition">Certifications</Link>
+              <Link href="/contact" className="text-sm text-gray-700 hover:text-blue-600 transition">Contact</Link>
+              <Link href="/contact">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-sm">Contact Us</Button>
+              </Link>
             </div>
-            <Link href="/contact">
-              <Button className="bg-blue-600 hover:bg-blue-700">Contact Us</Button>
-            </Link>
           </div>
         </div>
       </nav>
