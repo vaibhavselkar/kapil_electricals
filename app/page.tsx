@@ -59,41 +59,19 @@ export default function HomePage() {
               </div>
               <span className="font-bold text-lg text-gray-900">Kapil Electricals</span>
             </Link>
-            <div className="hidden md:flex items-center gap-8">
-              <Link href="/" className="text-gray-700 hover:text-blue-600 transition">Home</Link>
-              <Link href="/about" className="text-gray-700 hover:text-blue-600 transition">About</Link>
-              <Link href="/projects" className="text-gray-700 hover:text-blue-600 transition">Projects</Link>
-              <Link href="/solar" className="text-gray-700 hover:text-blue-600 transition">Solar Solutions</Link>
-              <Link href="/certifications" className="text-gray-700 hover:text-blue-600 transition">Certifications</Link>
-              <Link href="/contact" className="text-gray-700 hover:text-blue-600 transition">Contact</Link>
-            </div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-4 justify-end">
+              <Link href="/" className="text-sm text-gray-700 hover:text-blue-600 transition">Home</Link>
+              <Link href="/about" className="text-sm text-gray-700 hover:text-blue-600 transition">About</Link>
+              <Link href="/projects" className="text-sm text-gray-700 hover:text-blue-600 transition">Projects</Link>
+              <Link href="/solar" className="text-sm text-gray-700 hover:text-blue-600 transition">Solar</Link>
+              <Link href="/certifications" className="text-sm text-gray-700 hover:text-blue-600 transition">Certifications</Link>
+              <Link href="/contact" className="text-sm text-gray-700 hover:text-blue-600 transition">Contact</Link>
               <Link href="/contact">
-                <Button className="bg-blue-600 hover:bg-blue-700 text-sm sm:text-base">Contact Us</Button>
+                <Button className="bg-blue-600 hover:bg-blue-700 text-sm">Contact Us</Button>
               </Link>
-              <button
-                className="md:hidden p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-label="Toggle menu"
-              >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
             </div>
           </div>
         </div>
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-200">
-            <div className="px-4 py-4 space-y-3">
-              <Link href="/" className="block py-2 text-gray-700 hover:text-blue-600" onClick={() => setMobileMenuOpen(false)}>Home</Link>
-              <Link href="/about" className="block py-2 text-gray-700 hover:text-blue-600" onClick={() => setMobileMenuOpen(false)}>About</Link>
-              <Link href="/projects" className="block py-2 text-gray-700 hover:text-blue-600" onClick={() => setMobileMenuOpen(false)}>Projects</Link>
-              <Link href="/solar" className="block py-2 text-gray-700 hover:text-blue-600" onClick={() => setMobileMenuOpen(false)}>Solar Solutions</Link>
-              <Link href="/certifications" className="block py-2 text-gray-700 hover:text-blue-600" onClick={() => setMobileMenuOpen(false)}>Certifications</Link>
-              <Link href="/contact" className="block py-2 text-blue-600 font-semibold" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
-            </div>
-          </div>
-        )}
       </nav>
 
       {/* Hero Section */}
