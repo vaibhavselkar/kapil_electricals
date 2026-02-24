@@ -2,14 +2,12 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { Zap, Sun, Leaf, TrendingUp, CheckCircle, Phone, Mail } from 'lucide-react'
+import { Zap, Sun, Leaf, TrendingUp, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
-import Navbar from '@/components/navbar'
-import Footer from '@/components/footer'
 
 export default function Solar() {
-  const [reviews] = useState([
+  const [reviews, setReviews] = useState([
     { name: 'Amit Sharma', rating: 5, text: 'Best solar installation! Saving 40% on electricity bills.' },
     { name: 'Neha Gupta', rating: 5, text: 'Professional team, excellent workmanship. Highly recommended!' },
     { name: 'Rajesh Kumar', rating: 5, text: 'Government approval was smooth. Great support!' },
@@ -17,6 +15,17 @@ export default function Solar() {
     { name: 'Vikram Patel', rating: 5, text: 'Maintenance service is excellent and prompt.' },
     { name: 'Anjali Desai', rating: 5, text: 'Industry best warranty and after-sales support.' },
   ])
+
+  const [newReview, setNewReview] = useState({ name: '', rating: 5, text: '' })
+
+  const handleSubmitReview = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (newReview.name && newReview.text) {
+      setReviews([...reviews, newReview])
+      setNewReview({ name: '', rating: 5, text: '' })
+      alert('Thank you for your review!')
+    }
+  }
 
   const services = [
     { icon: Sun, title: 'Solar Panel Installation', description: 'State-of-the-art solar panel systems for homes and businesses' },
@@ -28,39 +37,59 @@ export default function Solar() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Navbar currentPage="solar" />
+      {/* Navbar */}
+      <nav className="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <Link href="/" className="flex items-center gap-2">
+              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                <Zap className="w-6 h-6 text-white" />
+              </div>
+              <span className="font-bold text-lg text-gray-900">Kapil Electricals</span>
+            </Link>
+            <div className="hidden md:flex items-center gap-8">
+              <Link href="/" className="text-gray-700 hover:text-blue-600 transition">Home</Link>
+              <Link href="/about" className="text-gray-700 hover:text-blue-600 transition">About</Link>
+              <Link href="/projects" className="text-gray-700 hover:text-blue-600 transition">Projects</Link>
+              <Link href="/solar" className="text-blue-600 font-semibold">Solar Solutions</Link>
+              <Link href="/certifications" className="text-gray-700 hover:text-blue-600 transition">Certifications</Link>
+              <Link href="/contact" className="text-gray-700 hover:text-blue-600 transition">Contact</Link>
+            </div>
+            <Link href="/contact">
+              <Button className="bg-blue-600 hover:bg-blue-700">Contact Us</Button>
+            </Link>
+          </div>
+        </div>
+      </nav>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-amber-50 to-white py-12 lg:py-16">
+      <section className="bg-gradient-to-br from-amber-50 to-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="text-center lg:text-left">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 lg:mb-6 text-balance">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-5xl font-bold text-gray-900 mb-4 text-balance">
                 Harness the Power of the Sun
               </h1>
-              <p className="text-lg lg:text-xl text-gray-600 mb-6 lg:mb-8 text-balance">
+              <p className="text-xl text-gray-600 mb-8 text-balance">
                 Premium solar solutions for residential, commercial, and government projects
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center lg:justify-start">
+              <div className="flex gap-4">
                 <Link href="/contact">
-                  <Button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-6 lg:px-8 py-3 lg:py-6 text-base lg:text-lg">
+                  <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg">
                     Get Solar Quote
                   </Button>
                 </Link>
-                <Link href="/projects">
-                  <Button variant="outline" className="w-full sm:w-auto px-6 lg:px-8 py-3 lg:py-6 text-base lg:text-lg border-blue-600 text-blue-600">
-                    Our Projects
-                  </Button>
-                </Link>
+                <Button variant="outline" className="px-8 py-6 text-lg border-blue-600 text-blue-600">
+                  Learn More
+                </Button>
               </div>
             </div>
-            <div className="relative h-64 sm:h-80 lg:h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg order-first lg:order-last">
+            <div className="relative h-96 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
               <Image
                 src="/placeholder.jpg"
                 alt="Solar panels"
                 fill
                 className="object-cover"
-                priority
               />
             </div>
           </div>
@@ -68,40 +97,40 @@ export default function Solar() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-12 lg:py-16 bg-blue-50">
+      <section className="py-16 bg-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl lg:text-4xl font-bold text-gray-900 mb-8 lg:mb-12 text-center">Why Choose Solar?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            <div className="bg-white p-6 lg:p-8 rounded-lg shadow-sm text-center">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Why Choose Solar?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-lg shadow-sm">
               <div className="text-4xl mb-4">💰</div>
-              <h3 className="text-lg lg:text-xl font-semibold text-gray-900 mb-3">Cost Savings</h3>
-              <p className="text-gray-600 text-sm lg:text-base">Save up to 80% on electricity bills over the system's lifetime</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Cost Savings</h3>
+              <p className="text-gray-600 text-balance">Save up to 80% on electricity bills over the system's lifetime</p>
             </div>
-            <div className="bg-white p-6 lg:p-8 rounded-lg shadow-sm text-center">
+            <div className="bg-white p-8 rounded-lg shadow-sm">
               <div className="text-4xl mb-4">🌍</div>
-              <h3 className="text-lg lg:text-xl font-semibold text-gray-900 mb-3">Environment Friendly</h3>
-              <p className="text-gray-600 text-sm lg:text-base">Reduce carbon footprint and contribute to a sustainable future</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Environment Friendly</h3>
+              <p className="text-gray-600 text-balance">Reduce carbon footprint and contribute to a sustainable future</p>
             </div>
-            <div className="bg-white p-6 lg:p-8 rounded-lg shadow-sm text-center">
+            <div className="bg-white p-8 rounded-lg shadow-sm">
               <div className="text-4xl mb-4">📈</div>
-              <h3 className="text-lg lg:text-xl font-semibold text-gray-900 mb-3">Increase Property Value</h3>
-              <p className="text-gray-600 text-sm lg:text-base">Boost your property value with renewable energy systems</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Increase Property Value</h3>
+              <p className="text-gray-600 text-balance">Boost your property value with renewable energy systems</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Services */}
-      <section className="py-12 lg:py-16 bg-white">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl lg:text-4xl font-bold text-gray-900 mb-8 lg:mb-12 text-center">Our Solar Services</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-6">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Our Solar Services</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {services.map((service, index) => {
               const Icon = service.icon
               return (
-                <div key={index} className="bg-gray-50 p-4 lg:p-6 rounded-lg shadow-sm hover:shadow-md transition text-center">
-                  <Icon className="w-10 lg:w-12 h-10 lg:h-12 text-amber-500 mx-auto mb-3 lg:mb-4" />
-                  <h3 className="text-base lg:text-lg font-semibold text-gray-900 mb-2">{service.title}</h3>
+                <div key={index} className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition text-center">
+                  <Icon className="w-12 h-12 text-amber-500 mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{service.title}</h3>
                   <p className="text-gray-600 text-sm">{service.description}</p>
                 </div>
               )
@@ -111,48 +140,122 @@ export default function Solar() {
       </section>
 
       {/* Reviews Section */}
-      <section className="py-12 lg:py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl lg:text-4xl font-bold text-gray-900 mb-8 lg:mb-12 text-center">Customer Reviews</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Customer Reviews</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {reviews.map((review, index) => (
-              <div key={index} className="bg-white p-6 lg:p-8 rounded-lg shadow-sm">
+              <div key={index} className="bg-white p-8 rounded-lg shadow-sm">
                 <div className="flex gap-1 mb-4">
                   {[...Array(review.rating)].map((_, i) => (
                     <span key={i} className="text-yellow-400 text-lg">★</span>
                   ))}
                 </div>
-                <p className="text-gray-700 mb-4 text-balance text-sm lg:text-base">{review.text}</p>
+                <p className="text-gray-700 mb-4 text-balance">{review.text}</p>
                 <p className="font-semibold text-gray-900">{review.name}</p>
               </div>
             ))}
+          </div>
+
+          {/* Review Form */}
+          <div className="bg-white p-8 rounded-lg shadow-sm max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">Share Your Experience</h3>
+            <form onSubmit={handleSubmitReview} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                <input
+                  type="text"
+                  value={newReview.name}
+                  onChange={(e) => setNewReview({ ...newReview, name: e.target.value })}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600"
+                  placeholder="Your name"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Rating</label>
+                <select
+                  value={newReview.rating}
+                  onChange={(e) => setNewReview({ ...newReview, rating: parseInt(e.target.value) })}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600"
+                >
+                  <option value={5}>⭐⭐⭐⭐⭐ Excellent</option>
+                  <option value={4}>⭐⭐⭐⭐ Very Good</option>
+                  <option value={3}>⭐⭐⭐ Good</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Review</label>
+                <textarea
+                  value={newReview.text}
+                  onChange={(e) => setNewReview({ ...newReview, text: e.target.value })}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600"
+                  placeholder="Share your experience..."
+                  rows={4}
+                  required
+                />
+              </div>
+              <Button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2">
+                Submit Review
+              </Button>
+            </form>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="bg-blue-600 text-white py-12 lg:py-16">
+      <section className="bg-blue-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl lg:text-4xl font-bold mb-4">Start Your Solar Journey Today</h2>
-          <p className="text-lg lg:text-xl mb-6 lg:mb-8 text-balance">Join hundreds of satisfied customers saving on energy costs</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
-              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-6 lg:px-8 py-3 lg:py-6 text-base lg:text-lg">
-                Get Free Consultation
-              </Button>
-            </Link>
-            <a
-              href="tel:+919999999999"
-              className="inline-flex items-center justify-center px-6 lg:px-8 py-3 lg:py-6 text-base lg:text-lg border-2 border-white text-white hover:bg-white/10 rounded-lg transition"
-            >
-              <Phone className="w-5 lg:w-6 h-5 lg:h-6 mr-2" />
-              Call Now
-            </a>
-          </div>
+          <h2 className="text-4xl font-bold mb-4">Start Your Solar Journey Today</h2>
+          <p className="text-xl mb-8 text-balance">Join hundreds of satisfied customers saving on energy costs</p>
+          <Link href="/contact">
+            <Button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-6 text-lg">
+              Get Free Consultation
+            </Button>
+          </Link>
         </div>
       </section>
 
-      <Footer />
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-300 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <h3 className="text-white font-bold mb-4">Kapil Electricals</h3>
+              <p className="text-sm">Professional electrical and solar solutions for all your needs.</p>
+            </div>
+            <div>
+              <h4 className="text-white font-semibold mb-4">Quick Links</h4>
+              <ul className="space-y-2 text-sm">
+                <li><Link href="/" className="hover:text-white transition">Home</Link></li>
+                <li><Link href="/about" className="hover:text-white transition">About</Link></li>
+                <li><Link href="/projects" className="hover:text-white transition">Projects</Link></li>
+                <li><Link href="/solar" className="hover:text-white transition">Solar Solutions</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-white font-semibold mb-4">Services</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="hover:text-white transition">Government Contracts</a></li>
+                <li><a href="#" className="hover:text-white transition">Commercial Work</a></li>
+                <li><a href="#" className="hover:text-white transition">Residential Services</a></li>
+                <li><a href="#" className="hover:text-white transition">Maintenance</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-white font-semibold mb-4">Contact</h4>
+              <ul className="space-y-2 text-sm">
+                <li>📞 +91-XXXXXXXXXX</li>
+                <li>✉️ info@kapilelectricals.com</li>
+                <li>Mon - Sat: 9:00 AM - 6:00 PM</li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 pt-8 text-center text-sm">
+            <p>&copy; 2024 Kapil Electricals. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
