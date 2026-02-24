@@ -3,12 +3,13 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ChevronLeft, ChevronRight, Phone, Mail, Zap, Sun, Wrench, Building2, Home as HomeIcon, CheckCircle } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Phone, Mail, Zap, Sun, Wrench, Building2, Home as HomeIcon, CheckCircle, Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [showFloating, setShowFloating] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const slides = [
     { title: 'Electrical Panel Installation', image: '/placeholder.jpg' },
@@ -66,9 +67,33 @@ export default function HomePage() {
               <Link href="/certifications" className="text-gray-700 hover:text-blue-600 transition">Certifications</Link>
               <Link href="/contact" className="text-gray-700 hover:text-blue-600 transition">Contact</Link>
             </div>
-            <Button className="bg-blue-600 hover:bg-blue-700">Contact Us</Button>
+            <div className="flex items-center gap-2">
+              <Link href="/contact" className="hidden md:block">
+                <Button className="bg-blue-600 hover:bg-blue-700">Contact Us</Button>
+              </Link>
+              <button
+                className="md:hidden p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
           </div>
         </div>
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white border-t border-gray-200">
+            <div className="px-4 py-4 space-y-3">
+              <Link href="/" className="block py-2 text-gray-700 hover:text-blue-600" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+              <Link href="/about" className="block py-2 text-gray-700 hover:text-blue-600" onClick={() => setMobileMenuOpen(false)}>About</Link>
+              <Link href="/projects" className="block py-2 text-gray-700 hover:text-blue-600" onClick={() => setMobileMenuOpen(false)}>Projects</Link>
+              <Link href="/solar" className="block py-2 text-gray-700 hover:text-blue-600" onClick={() => setMobileMenuOpen(false)}>Solar Solutions</Link>
+              <Link href="/certifications" className="block py-2 text-gray-700 hover:text-blue-600" onClick={() => setMobileMenuOpen(false)}>Certifications</Link>
+              <Link href="/contact" className="block py-2 text-blue-600 font-semibold" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
