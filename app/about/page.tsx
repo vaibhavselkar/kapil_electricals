@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Zap, CheckCircle } from 'lucide-react'
+import Navbar from '@/components/navbar'
 import { Button } from '@/components/ui/button'
 
 export default function About() {
