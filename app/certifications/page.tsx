@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import { Zap, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import Navbar from '@/components/navbar'
+import Footer from '@/components/footer'
 
 export default function Certifications() {
   const certifications = [
@@ -57,62 +59,39 @@ export default function Certifications() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Navbar */}
-      <nav className="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-                <Zap className="w-6 h-6 text-white" />
-              </div>
-              <span className="font-bold text-lg text-gray-900">Kapil Electricals</span>
-            </Link>
-            <div className="hidden md:flex items-center gap-8">
-              <Link href="/" className="text-gray-700 hover:text-blue-600 transition">Home</Link>
-              <Link href="/about" className="text-gray-700 hover:text-blue-600 transition">About</Link>
-              <Link href="/projects" className="text-gray-700 hover:text-blue-600 transition">Projects</Link>
-              <Link href="/solar" className="text-gray-700 hover:text-blue-600 transition">Solar Solutions</Link>
-              <Link href="/certifications" className="text-blue-600 font-semibold">Certifications</Link>
-              <Link href="/contact" className="text-gray-700 hover:text-blue-600 transition">Contact</Link>
-            </div>
-            <Link href="/contact">
-              <Button className="bg-blue-600 hover:bg-blue-700">Contact Us</Button>
-            </Link>
-          </div>
-        </div>
-      </nav>
+      <Navbar currentPage="certifications" />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 to-white py-12">
+      <section className="bg-gradient-to-br from-blue-50 to-white py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">Licenses & Certifications</h1>
-          <p className="text-xl text-gray-600 text-balance">Fully certified and government-approved electrical contractor</p>
+          <h1 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-4 text-center lg:text-left">Licenses & Certifications</h1>
+          <p className="text-lg lg:text-xl text-gray-600 text-balance text-center lg:text-left">Fully certified and government-approved electrical contractor</p>
         </div>
       </section>
 
       {/* Certifications Table */}
       {certifications.map((cert, index) => (
-        <section key={index} className={index % 2 === 0 ? 'py-16 bg-white' : 'py-16 bg-gray-50'}>
+        <section key={index} className={index % 2 === 0 ? 'py-12 lg:py-16 bg-white' : 'py-12 lg:py-16 bg-gray-50'}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">{cert.category}</h2>
+            <h2 className="text-xl lg:text-3xl font-bold text-gray-900 mb-6 lg:mb-8">{cert.category}</h2>
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full min-w-[600px]">
                 <thead>
                   <tr className="border-b-2 border-blue-600">
-                    <th className="text-left py-4 px-6 font-semibold text-gray-900">Certification Name</th>
-                    <th className="text-left py-4 px-6 font-semibold text-gray-900">License/Certificate Number</th>
-                    <th className="text-left py-4 px-6 font-semibold text-gray-900">Validity Status</th>
+                    <th className="text-left py-3 lg:py-4 px-3 lg:px-6 font-semibold text-gray-900 text-sm lg:text-base">Certification Name</th>
+                    <th className="text-left py-3 lg:py-4 px-3 lg:px-6 font-semibold text-gray-900 text-sm lg:text-base">License/Certificate Number</th>
+                    <th className="text-left py-3 lg:py-4 px-3 lg:px-6 font-semibold text-gray-900 text-sm lg:text-base">Validity Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   {cert.items.map((item, i) => (
                     <tr key={i} className="border-b border-gray-200 hover:bg-gray-100/50 transition">
-                      <td className="py-4 px-6 text-gray-700 flex items-center gap-2">
-                        <CheckCircle className="w-5 h-5 text-green-600" />
-                        {item.name}
+                      <td className="py-3 lg:py-4 px-3 lg:px-6 text-gray-700 flex items-center gap-2 text-sm lg:text-base">
+                        <CheckCircle className="w-4 lg:w-5 h-4 lg:h-5 text-green-600 flex-shrink-0" />
+                        <span className="line-clamp-1">{item.name}</span>
                       </td>
-                      <td className="py-4 px-6 text-gray-600 font-mono text-sm">{item.number}</td>
-                      <td className="py-4 px-6 text-gray-600">{item.date}</td>
+                      <td className="py-3 lg:py-4 px-3 lg:px-6 text-gray-600 font-mono text-xs lg:text-sm">{item.number}</td>
+                      <td className="py-3 lg:py-4 px-3 lg:px-6 text-gray-600 text-xs lg:text-sm">{item.date}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -123,17 +102,17 @@ export default function Certifications() {
       ))}
 
       {/* Contract Eligibility */}
-      <section className="py-16 bg-white">
+      <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">Contract Eligibility</h2>
-          <p className="text-lg text-gray-600 mb-8 text-balance">
+          <h2 className="text-xl lg:text-3xl font-bold text-gray-900 mb-6 lg:mb-8">Contract Eligibility</h2>
+          <p className="text-base lg:text-lg text-gray-600 mb-6 lg:mb-8 text-balance">
             With our complete certifications and government approvals, Kapil Electricals is eligible for the following project categories:
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
             {contractEligibility.map((item, index) => (
-              <div key={index} className="flex items-start gap-4 p-6 bg-blue-50 rounded-lg">
-                <CheckCircle className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
-                <p className="text-gray-700 font-medium">{item}</p>
+              <div key={index} className="flex items-start gap-3 lg:gap-4 p-4 lg:p-6 bg-blue-50 rounded-lg">
+                <CheckCircle className="w-5 lg:w-6 h-5 lg:h-6 text-blue-600 flex-shrink-0 mt-0.5" />
+                <p className="text-gray-700 font-medium text-sm lg:text-base">{item}</p>
               </div>
             ))}
           </div>
@@ -141,28 +120,28 @@ export default function Certifications() {
       </section>
 
       {/* Compliance Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-12 lg:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">Compliance & Standards</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Safety Standards</h3>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-center gap-2"><CheckCircle className="w-5 h-5 text-green-600" /> Indian Electrical Rules 1956</li>
-                <li className="flex items-center gap-2"><CheckCircle className="w-5 h-5 text-green-600" /> National Building Code 2016</li>
-                <li className="flex items-center gap-2"><CheckCircle className="w-5 h-5 text-green-600" /> Occupational Safety Standards</li>
-                <li className="flex items-center gap-2"><CheckCircle className="w-5 h-5 text-green-600" /> Environmental Protection Act</li>
-                <li className="flex items-center gap-2"><CheckCircle className="w-5 h-5 text-green-600" /> Workers Compensation Act</li>
+          <h2 className="text-xl lg:text-3xl font-bold text-gray-900 mb-6 lg:mb-8">Compliance & Standards</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            <div className="bg-white p-6 lg:p-8 rounded-lg shadow-sm">
+              <h3 className="text-lg lg:text-xl font-semibold text-gray-900 mb-4">Safety Standards</h3>
+              <ul className="space-y-2 lg:space-y-3 text-gray-700 text-sm lg:text-base">
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 lg:w-5 h-4 lg:h-5 text-green-600" /> Indian Electrical Rules 1956</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 lg:w-5 h-4 lg:h-5 text-green-600" /> National Building Code 2016</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 lg:w-5 h-4 lg:h-5 text-green-600" /> Occupational Safety Standards</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 lg:w-5 h-4 lg:h-5 text-green-600" /> Environmental Protection Act</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 lg:w-5 h-4 lg:h-5 text-green-600" /> Workers Compensation Act</li>
               </ul>
             </div>
-            <div className="bg-white p-8 rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Quality Standards</h3>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-center gap-2"><CheckCircle className="w-5 h-5 text-green-600" /> ISO 9001:2015 Quality Management</li>
-                <li className="flex items-center gap-2"><CheckCircle className="w-5 h-5 text-green-600" /> ISO 14001 Environmental Management</li>
-                <li className="flex items-center gap-2"><CheckCircle className="w-5 h-5 text-green-600" /> Regular Audit & Inspection</li>
-                <li className="flex items-center gap-2"><CheckCircle className="w-5 h-5 text-green-600" /> Continuous Improvement Program</li>
-                <li className="flex items-center gap-2"><CheckCircle className="w-5 h-5 text-green-600" /> Industry Best Practices</li>
+            <div className="bg-white p-6 lg:p-8 rounded-lg shadow-sm">
+              <h3 className="text-lg lg:text-xl font-semibold text-gray-900 mb-4">Quality Standards</h3>
+              <ul className="space-y-2 lg:space-y-3 text-gray-700 text-sm lg:text-base">
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 lg:w-5 h-4 lg:h-5 text-green-600" /> ISO 9001:2015 Quality Management</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 lg:w-5 h-4 lg:h-5 text-green-600" /> ISO 14001 Environmental Management</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 lg:w-5 h-4 lg:h-5 text-green-600" /> Regular Audit & Inspection</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 lg:w-5 h-4 lg:h-5 text-green-600" /> Continuous Improvement Program</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 lg:w-5 h-4 lg:h-5 text-green-600" /> Industry Best Practices</li>
               </ul>
             </div>
           </div>
@@ -170,14 +149,14 @@ export default function Certifications() {
       </section>
 
       {/* Verification Info */}
-      <section className="py-16 bg-blue-50">
+      <section className="py-12 lg:py-16 bg-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Verify Our Credentials</h2>
-          <p className="text-lg text-gray-600 mb-8 text-balance">
+          <h2 className="text-xl lg:text-3xl font-bold text-gray-900 mb-4">Verify Our Credentials</h2>
+          <p className="text-base lg:text-lg text-gray-600 mb-6 lg:mb-8 text-balance">
             All our certifications and licenses are current and can be verified with relevant government authorities
           </p>
           <Link href="/contact">
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 lg:px-8 py-3">
               Request Certificate Verification
             </Button>
           </Link>
@@ -185,58 +164,19 @@ export default function Certifications() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-blue-600 text-white py-16">
+      <section className="bg-blue-600 text-white py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-4">Trusted by Governments & Corporations</h2>
-          <p className="text-xl mb-8 text-balance">Our certifications ensure quality, safety, and reliability in every project</p>
+          <h2 className="text-2xl lg:text-4xl font-bold mb-4">Trusted by Governments & Corporations</h2>
+          <p className="text-lg lg:text-xl mb-6 lg:mb-8 text-balance">Our certifications ensure quality, safety, and reliability in every project</p>
           <Link href="/contact">
-            <Button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-6 text-lg">
+            <Button className="bg-white text-blue-600 hover:bg-gray-100 px-6 lg:px-8 py-3 lg:py-6 text-base lg:text-lg">
               Partner With Us
             </Button>
           </Link>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-gray-300 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h3 className="text-white font-bold mb-4">Kapil Electricals</h3>
-              <p className="text-sm">Professional electrical and solar solutions for all your needs.</p>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-sm">
-                <li><Link href="/" className="hover:text-white transition">Home</Link></li>
-                <li><Link href="/about" className="hover:text-white transition">About</Link></li>
-                <li><Link href="/projects" className="hover:text-white transition">Projects</Link></li>
-                <li><Link href="/solar" className="hover:text-white transition">Solar Solutions</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Services</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-white transition">Government Contracts</a></li>
-                <li><a href="#" className="hover:text-white transition">Commercial Work</a></li>
-                <li><a href="#" className="hover:text-white transition">Residential Services</a></li>
-                <li><a href="#" className="hover:text-white transition">Maintenance</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Contact</h4>
-              <ul className="space-y-2 text-sm">
-                <li>📞 +91-XXXXXXXXXX</li>
-                <li>✉️ info@kapilelectricals.com</li>
-                <li>Mon - Sat: 9:00 AM - 6:00 PM</li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 pt-8 text-center text-sm">
-            <p>&copy; 2024 Kapil Electricals. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
